@@ -1,0 +1,28 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const auth_1 = __importDefault(require("./middlewares/auth"));
+const GeeksController_1 = __importDefault(require("./controllers/GeeksController"));
+const ConnectionsController_1 = __importDefault(require("./controllers/ConnectionsController"));
+const SessionController_1 = __importDefault(require("./controllers/SessionController"));
+const UserController_1 = __importDefault(require("./controllers/UserController"));
+const routes = express_1.Router();
+const geeksController = new GeeksController_1.default();
+const connectionController = new ConnectionsController_1.default();
+const sessionController = new SessionController_1.default();
+const userController = new UserController_1.default();
+routes.post('/sessions', sessionController.store);
+routes.post('/users', userController.store);
+routes.use(auth_1.default);
+routes.post('/geeks', geeksController.store);
+routes.put('/geeks', geeksController.update);
+routes.get('/geeks', geeksController.index);
+routes.get('/geeks/:geek_id', geeksController.show);
+routes.post('/connections', connectionController.store);
+routes.get('/connections', connectionController.index);
+routes.put('/users', userController.update);
+routes.get('/users', userController.show);
+exports.default = routes;
