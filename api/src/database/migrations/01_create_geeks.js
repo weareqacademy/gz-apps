@@ -5,6 +5,7 @@ async function up(knex) {
     return knex.schema.createTable('geeks', (table) => {
         table.increments('id').primary();
         table.string('desc').notNullable();
+        table.string('printer_repair').notNullable();
         table.string('work').notNullable();
         table.decimal('cost').notNullable();
         table

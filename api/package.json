@@ -1,12 +1,10 @@
 {
-  "name": "getgeeks-geeks",
+  "name": "getgeeks-api",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node src/server.js",
-    "migrate": "knex --knexfile knexfile.js migrate:latest",
-    "rollback": "knex --knexfile knexfile.js migrate:rollback"
+    "start": "node src/server.js"
   },
   "dependencies": {
     "amqplib": "^0.8.0",
@@ -16,6 +14,6 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.21.2",
-    "pg": "^8.8.0"
+    "pg": "^8.3.2"
   }
 }

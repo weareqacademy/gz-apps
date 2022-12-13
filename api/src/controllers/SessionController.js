@@ -10,14 +10,21 @@ const auth_1 = __importDefault(require("../config/auth"));
 class SessionController {
     async store(req, res) {
         const { email, password } = req.body;
+        const regexEmail = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+        if (!email || email.length <= 0)
+            return res.status(400).json({ error: 'Required email' });
+        else if (!regexEmail.test(email))
+            return res.status(400).json({ error: 'Incorrect email' });
+        if (!password || password.length <= 0)
+            return res.status(400).json({ error: 'Required pass' });
         const userExists = await connection_1.default('users')
             .where('email', '=', email)
             .select(['users.*']);
         if (userExists.length === 0) {
-            return res.status(401).json({ error: 'User does not exists' });
+            return res.status(401).json({ error: 'Unauthorized' });
         }
         if (!(await bcrypt_1.default.compare(password, userExists[0].password_hash))) {
-            return res.status(401).json({ error: 'Invalid password' });
+            return res.status(401).json({ error: 'Unauthorized' });
         }
         const { id } = userExists[0];
         return res.json({

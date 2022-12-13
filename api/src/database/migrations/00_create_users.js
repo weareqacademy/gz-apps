@@ -9,6 +9,7 @@ async function up(knex) {
         table.string('name').notNullable();
         table.string('avatar');
         table.string('whatsapp');
+        table.boolean('is_geek').defaultTo(false);
     });
 }
 exports.up = up;
