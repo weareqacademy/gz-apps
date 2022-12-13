@@ -13,5 +13,5 @@ app.get('/*', function (req, res) {
 });
 
 app.listen(port, function () {
-  console.log('RockLov disponível na porta ' + port);
+  console.log('Getgeeks disponível na porta ' + port);
 });
