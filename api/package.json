@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "migrate": "knex --knexfile knexfile.js migrate:latest",
+    "rollback": "knex --knexfile knexfile.js migrate:rollback"
   },
   "dependencies": {
     "amqplib": "^0.8.0",
